@@ -1,137 +1,719 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Info Pembayaran Internet Mitra Digital</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Info Pembayaran Internet | Mitra Digital</title>
+
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background: #e9e9e9;
+    }
+
+    :root {
+      --primary: #0f172a;
+      --primary-2: #1e293b;
+      --accent: #2563eb;
+      --accent-2: #1d4ed8;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --bg: #eef2f7;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #64748b;
+      --shadow: 0 14px 40px rgba(15, 23, 42, 0.12);
+      --radius: 18px;
+    }
+
+    body {
       font-family: Arial, Helvetica, sans-serif;
-      color: #1f2937;
+      background:
+        radial-gradient(circle at top right, rgba(37,99,235,0.12), transparent 30%),
+        radial-gradient(circle at top left, rgba(220,38,38,0.10), transparent 25%),
+        linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
     }
 
-    .wrapper {
-      max-width: 1200px;
+    .container {
+      max-width: 1250px;
       margin: 0 auto;
-      padding: 20px;
     }
 
-    .box {
-      background: #efefef;
-      border: 3px solid red;
-      padding: 18px 22px 28px;
-      box-sizing: border-box;
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--primary) 0%, #16213e 55%, #1d3557 100%);
+      color: white;
+      border-radius: 26px;
+      padding: 34px 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      border: 2px solid rgba(255,255,255,0.08);
     }
 
-    h1 {
-      margin: 0 0 12px;
-      font-size: 30px;
-      color: #111827;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,0.18), transparent 18%),
+        radial-gradient(circle at 15% 85%, rgba(37,99,235,0.18), transparent 20%);
+      pointer-events: none;
     }
 
-    p {
-      margin: 0 0 24px;
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .3px;
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.18);
+      flex: 0 0 auto;
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      font-size: 42px;
+      line-height: 1.12;
+      letter-spacing: -0.5px;
+      max-width: 900px;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+      max-width: 950px;
       font-size: 18px;
-      line-height: 1.6;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.92);
     }
 
-    .section-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin: 22px 0 12px;
+    .hero-note {
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    ol {
-      margin: 0 0 24px 24px;
-      padding-left: 20px;
-      line-height: 1.9;
-      font-size: 18px;
+    .pill {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    li {
+    .section {
+      margin-top: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .section-number {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(37,99,235,0.22);
+      flex: 0 0 auto;
+    }
+
+    .section-header h2 {
+      font-size: 28px;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .section-header p {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 44px rgba(15, 23, 42, 0.16);
+      border-color: rgba(37,99,235,0.18);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), #60a5fa);
+    }
+
+    .card.cod::before {
+      background: linear-gradient(90deg, var(--success), #4ade80);
+    }
+
+    .card-inner {
+      padding: 22px 22px 20px;
+    }
+
+    .top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .merchant-title {
+      font-size: 22px;
+      line-height: 1.25;
+      color: var(--primary);
       margin-bottom: 6px;
     }
 
-    a {
-      color: #007bff;
-      font-style: italic;
+    .merchant-subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+    }
+
+    .badge.cash {
+      background: rgba(37,99,235,0.10);
+      color: var(--accent-2);
+      border-color: rgba(37,99,235,0.16);
+    }
+
+    .badge.cod {
+      background: rgba(22,163,74,0.10);
+      color: #15803d;
+      border-color: rgba(22,163,74,0.16);
+    }
+
+    .meta {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: #334155;
+      line-height: 1.6;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .meta-icon {
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e0e7ff;
+      color: #1d4ed8;
+      font-size: 15px;
       font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 14px;
       text-decoration: none;
+      font-weight: 800;
+      font-size: 15px;
+      transition: .25s ease;
+      border: 1px solid transparent;
+      flex: 1 1 180px;
+      text-align: center;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .btn-map {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      box-shadow: 0 10px 24px rgba(37,99,235,0.22);
     }
 
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 24px;
+    .btn-map:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.02);
+    }
+
+    .btn-wa {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: white;
+      box-shadow: 0 10px 24px rgba(22,163,74,0.22);
+    }
+
+    .btn-wa:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.02);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary);
+      border-color: #dbe4f0;
+    }
+
+    .btn-secondary:hover {
+      background: #f8fafc;
+      transform: translateY(-2px);
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      background: linear-gradient(135deg, #fff, #f8fafc);
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 18px 20px;
+      color: #334155;
+      box-shadow: var(--shadow);
+    }
+
+    .footer-note h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .footer-note p {
+      line-height: 1.7;
+      font-size: 15px;
+      color: #475569;
+    }
+
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: 1fr;
       }
 
-      p,
-      ol {
+      .hero h1 {
+        font-size: 34px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 14px;
+      }
+
+      .hero {
+        padding: 24px 18px;
+        border-radius: 20px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero p {
         font-size: 16px;
       }
 
-      .box {
-        padding: 16px;
+      .section-header h2 {
+        font-size: 23px;
+      }
+
+      .merchant-title {
+        font-size: 20px;
+      }
+
+      .card-inner {
+        padding: 18px;
+      }
+
+      .top-row {
+        flex-direction: column;
+      }
+
+      .badge {
+        align-self: flex-start;
       }
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="box">
-      <h1>Info Pembayaran Internet (Cash & COD)</h1>
+  <div class="container">
+
+    <section class="hero">
+      <div class="hero-top">
+        <div class="brand-badge">
+          <span class="brand-dot"></span>
+          Merchant Pembayaran Resmi Mitra Digital
+        </div>
+      </div>
+
+      <h1>Info Pembayaran Internet Mitra Digital</h1>
       <p>
-        Selain di kantor unit, <strong>Berikut Mitra Kerjasama Pembayaran Internet Mitra Digital :</strong>
+        Selain pembayaran langsung di kantor unit, pelanggan juga dapat melakukan pembayaran melalui
+        mitra pembayaran resmi Mitra Digital pada wilayah yang tersedia di bawah ini.
+        Silakan pilih lokasi mitra terdekat atau hubungi mitra COD sesuai wilayah Anda.
       </p>
 
-      <div class="section-title">A. Wilayah Kotaagung :</div>
-      <ol>
-        <li>
-          Kantor Layanan MDN (Via - Cash) :
-          <a href="https://mitradigital.co.id" target="_blank">Unit Layanan Kota Agung</a>
-        </li>
-        <li>
-          Kopus-BRILink Lia Veriani (Via - Cash) :
-          <a href="https://maps.google.com/?q=Jl. Merdeka Kotaagung Pusat Kab. Tanggamus" target="_blank">
-            klik => Jl. Merdeka Kotaagung Pusat Kab. Tanggamus
-          </a>
-        </li>
-        <li>
-          Kopus-ANDIKA WIJAYA / Kang Deliv (Via - COD) :
-          <a href="https://wa.me/6285959020747" target="_blank">
-            klik => Hub. 085959020747
-          </a>
-        </li>
-        <li>
-          Kopus-IDRIS BAKUL COKLAT (Via - COD) :
-          <a href="https://wa.me/6282289041902" target="_blank">
-            klik => Hub. 082289041902
-          </a>
-        </li>
-      </ol>
+      <div class="hero-note">
+        <div class="pill">Cash & COD</div>
+        <div class="pill">Klik tombol untuk Maps / WhatsApp</div>
+        <div class="pill">Mitra Pembayaran Wilayah Tanggamus</div>
+      </div>
+    </section>
 
-      <div class="section-title">B. Wilayah Wonosobo :</div>
-      <ol>
-        <li>
-          Wonosobo-BRILink Aji Prabowo (Via - Cash) :
-          <a href="https://maps.google.com/?q=Jl. Lintas Barat Pekon Soponyono Pusat Kab. Tanggamus" target="_blank">
-            klik => Jl. Lintas Barat Pekon Soponyono Pusat Kab. Tanggamus
-          </a>
-        </li>
-        <li>
-          Wonosobo-ASEP AWALUDDIN (Via - COD) :
-          <a href="https://wa.me/6285179599760" target="_blank">
-            klik => Hub. 085179599760
-          </a>
-        </li>
-      </ol>
-    </div>
+    <!-- ===================== KOTAAGUNG ===================== -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">A</div>
+        <div>
+          <h2>Wilayah Kotaagung</h2>
+          <p>Daftar mitra pembayaran internet Mitra Digital di wilayah Kotaagung.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- 1 -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="top-row">
+              <div>
+                <h3 class="merchant-title">Kantor Layanan MDN</h3>
+                <div class="merchant-subtitle">
+                  Unit layanan resmi Mitra Digital untuk pembayaran langsung di wilayah Kotaagung.
+                </div>
+              </div>
+              <span class="badge cash">Via Cash</span>
+            </div>
+
+            <div class="meta">
+              <div class="meta-item">
+                <div class="meta-icon">📍</div>
+                <div>
+                  <strong>Lokasi</strong>
+                  Unit Layanan Kota Agung
+                </div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon">🏢</div>
+                <div>
+                  <strong>Jenis Layanan</strong>
+                  Pembayaran langsung di kantor / unit layanan
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-map" href="https://maps.app.goo.gl/8Wrd1D6Jf9iUhauq9" target="_blank">
+                📍 Buka Lokasi
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="top-row">
+              <div>
+                <h3 class="merchant-title">BRILink Lia Veriani</h3>
+                <div class="merchant-subtitle">
+                  Mitra pembayaran internet Mitra Digital untuk transaksi cash di wilayah Kotaagung.
+                </div>
+              </div>
+              <span class="badge cash">Via Cash</span>
+            </div>
+
+            <div class="meta">
+              <div class="meta-item">
+                <div class="meta-icon">📍</div>
+                <div>
+                  <strong>Lokasi Mitra</strong>
+                  BRILink Lia Veriani – Wilayah Kotaagung
+                </div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon">💳</div>
+                <div>
+                  <strong>Metode Pembayaran</strong>
+                  Pembayaran internet secara cash melalui mitra BRILink
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-map" href="https://maps.app.goo.gl/f2CRoeRd4N2555i4A" target="_blank">
+                📍 Buka Lokasi
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="card cod">
+          <div class="card-inner">
+            <div class="top-row">
+              <div>
+                <h3 class="merchant-title">Andika Wijaya / Kang Deliv</h3>
+                <div class="merchant-subtitle">
+                  Mitra COD Mitra Digital untuk membantu pembayaran internet bulanan pelanggan.
+                </div>
+              </div>
+              <span class="badge cod">Via COD</span>
+            </div>
+
+            <div class="meta">
+              <div class="meta-item">
+                <div class="meta-icon">📱</div>
+                <div>
+                  <strong>Kontak Mitra</strong>
+                  Hubungi Andika Wijaya melalui WhatsApp untuk proses pembayaran COD.
+                </div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon">🚚</div>
+                <div>
+                  <strong>Layanan</strong>
+                  Pembayaran internet bulanan via COD / jemput pembayaran
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-wa" href="https://wa.me/6285959020747?text=Bapak%20Andika%20%28Mitra%20Pembayaran%20MDN%29%2C%20Mohon%20di%20bantu%20melakukan%20pembayaran%20Internet%20Bulanan%20saya%20Atas%20Nama" target="_blank">
+                💬 Chat WhatsApp
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="card cod">
+          <div class="card-inner">
+            <div class="top-row">
+              <div>
+                <h3 class="merchant-title">Idris Bakul Coklat</h3>
+                <div class="merchant-subtitle">
+                  Mitra COD Mitra Digital untuk membantu pembayaran internet bulanan pelanggan.
+                </div>
+              </div>
+              <span class="badge cod">Via COD</span>
+            </div>
+
+            <div class="meta">
+              <div class="meta-item">
+                <div class="meta-icon">📱</div>
+                <div>
+                  <strong>Kontak Mitra</strong>
+                  Hubungi Idris Bakul Coklat melalui WhatsApp untuk proses pembayaran COD.
+                </div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon">🚚</div>
+                <div>
+                  <strong>Layanan</strong>
+                  Pembayaran internet bulanan via COD / jemput pembayaran
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-wa" href="https://wa.me/6282289041902?text=Bapak%20Idris%20Bakul%20Coklat%20%28Mitra%20Pembayaran%20MDN%29%2C%20Mohon%20di%20bantu%20melakukan%20pembayaran%20Internet%20Bulanan%20saya%20Atas%20Nama" target="_blank">
+                💬 Chat WhatsApp
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== WONOSOBO ===================== -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">B</div>
+        <div>
+          <h2>Wilayah Wonosobo</h2>
+          <p>Daftar mitra pembayaran internet Mitra Digital di wilayah Wonosobo.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- 5 -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="top-row">
+              <div>
+                <h3 class="merchant-title">BRILink Aji Prabowo</h3>
+                <div class="merchant-subtitle">
+                  Mitra pembayaran internet Mitra Digital untuk transaksi cash di wilayah Wonosobo.
+                </div>
+              </div>
+              <span class="badge cash">Via Cash</span>
+            </div>
+
+            <div class="meta">
+              <div class="meta-item">
+                <div class="meta-icon">📍</div>
+                <div>
+                  <strong>Lokasi Mitra</strong>
+                  BRILink Aji Prabowo – Wilayah Wonosobo
+                </div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon">💳</div>
+                <div>
+                  <strong>Metode Pembayaran</strong>
+                  Pembayaran internet secara cash melalui mitra BRILink
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-map" href="https://maps.app.goo.gl/vfRUYAX4hhDDgDPFA" target="_blank">
+                📍 Buka Lokasi
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="card cod">
+          <div class="card-inner">
+            <div class="top-row">
+              <div>
+                <h3 class="merchant-title">Asep Awaluddin</h3>
+                <div class="merchant-subtitle">
+                  Mitra COD Mitra Digital untuk membantu pembayaran internet bulanan pelanggan.
+                </div>
+              </div>
+              <span class="badge cod">Via COD</span>
+            </div>
+
+            <div class="meta">
+              <div class="meta-item">
+                <div class="meta-icon">📱</div>
+                <div>
+                  <strong>Kontak Mitra</strong>
+                  Hubungi Asep Awaluddin melalui WhatsApp untuk proses pembayaran COD.
+                </div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-icon">🚚</div>
+                <div>
+                  <strong>Layanan</strong>
+                  Pembayaran internet bulanan via COD / jemput pembayaran
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-wa" href="https://wa.me/6285179599760?text=Bapak%20Asep%20%28Mitra%20Pembayaran%20MDN%29%2C%20Mohon%20di%20bantu%20melakukan%20pembayaran%20Internet%20Bulanan%20saya%20Atas%20Nama" target="_blank">
+                💬 Chat WhatsApp
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="footer-note">
+      <h3>Informasi Pembayaran</h3>
+      <p>
+        Silakan pilih mitra pembayaran sesuai wilayah Anda. Untuk layanan <strong>Cash</strong>,
+        gunakan tombol <strong>Buka Lokasi</strong> agar langsung diarahkan ke Google Maps.
+        Untuk layanan <strong>COD</strong>, gunakan tombol <strong>Chat WhatsApp</strong> agar pesan
+        otomatis terisi dan dapat langsung dikirim ke mitra pembayaran.
+      </p>
+    </section>
+
   </div>
 </body>
 </html>
