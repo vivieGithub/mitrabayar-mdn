@@ -1,2 +1,2 @@
 # pembayaran-mdn
-Halaman Mitra Pembaran Internet PT. Mitra Digital
+Halaman Mitra/ Merchant Pembayaran Internet PT. Mitra Digital
